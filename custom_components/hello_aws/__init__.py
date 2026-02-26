@@ -76,7 +76,7 @@ async def _force_hacs_refresh(hass: HomeAssistant) -> bool:
         return False
 
 
-async def _refresh_and_install(hass: HomeAssistant, entry: ConfigEntry, now=None) -> None:
+async def _refresh_and_install(hass: HomeAssistant, now=None) -> None:
     """Query GitHub directly for latest version; if newer, force HACS to refresh then install."""
     _LOGGER.debug("[hello_aws v%s] Querying GitHub releases API...", INTEGRATION_VERSION)
 
@@ -179,13 +179,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     async def _initial_check(_=None):
         _LOGGER.info("[hello_aws v%s] Initial update check starting (30s delay)...", INTEGRATION_VERSION)
         await asyncio.sleep(30)
-        await _refresh_and_install(hass, entry)
+        await _refresh_and_install(hass)
 
     entry.async_create_background_task(hass, _initial_check(), "hello_aws_initial_update_check")
 
     async def _scheduled_check(now=None) -> None:
         _LOGGER.info("[hello_aws v%s] Scheduled update check fired at %s", INTEGRATION_VERSION, now)
-        await _refresh_and_install(hass, entry, now)
+        await _refresh_and_install(hass, now)
 
     cancel_interval = async_track_time_interval(
         hass, _scheduled_check, UPDATE_CHECK_INTERVAL
