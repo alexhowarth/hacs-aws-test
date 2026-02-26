@@ -1,0 +1,12 @@
+{
+  "domain": "hello_aws",
+  "name": "Hello AWS IoT",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/alexhowarth/hacs-aws-test",
+  "iot_class": "cloud_polling",
+  "requirements": [
+    "awsiotsdk>=1.26.0"
+  ],
+  "version": "0.1.19"
+}

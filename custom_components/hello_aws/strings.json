@@ -1,0 +1,10 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Hello AWS IoT",
+        "description": "This integration verifies that the AWS IoT SDK (awsiotsdk + awscrt) can be installed by HACS. Press Submit to continue."
+      }
+    }
+  }
+}
